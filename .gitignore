@@ -1,0 +1,8 @@
+.*
+!.gitignore
+public/
+resources/
+node_modules/
+node_modules
+themes/
+init_docsy.sh
