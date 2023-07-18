@@ -46,4 +46,14 @@ iface enp179s0 inet manual
 iface enp179s0d1 inet manual
 ```
 
+### 修改 hosts 文件
+
+记得修改 hosts 文件中的记录：
+
+```bash
+vi /etc/hosts
+```
+
+这里也有一个旧的 IP 地址需要为新的 IP 地址。
+
 修改完成后重启。
