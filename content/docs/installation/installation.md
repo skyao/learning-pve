@@ -52,6 +52,8 @@ https://pve.proxmox.com/pve-docs/pve-admin-guide.html#installation_installer
 
 > 备注：zfs 和 ceph 的使用稍后再尝试。目前没有开启
 
+为了支持使用 timeshift 工具进行备份和恢复，在安装时选择留出部分空间给到 timeshift，因此 hdsize 被设置为实际硬盘大小 - 50G 左右。后面再对这个空余空间进行分区和格式化并安装和配置 timeshift 。
+
 ## 常见问题
 
 ### "Loading initial ramdisk"

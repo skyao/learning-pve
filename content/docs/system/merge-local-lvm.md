@@ -1,7 +1,7 @@
 ---
 title: "合并local-lvm和local分区"
 linkTitle: "合并local-lvm"
-weight: 20
+weight: 30
 date: 2021-01-18
 description: >
   合并local-lvm和local分区
@@ -87,8 +87,8 @@ tmpfs                tmpfs      13G     0   13G   0% /run/user/0
 ## 修改 local 属性
 
  "Datacenter"  -> "Storage" 下，选择 local, 编辑 Content ，选中所有内容。
- 
+
  ## 参考资料
- 
+
  - https://alay.cc/701.html
 

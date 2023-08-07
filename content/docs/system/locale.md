@@ -1,7 +1,7 @@
 ---
 title: "修改locale设置"
 linkTitle: "设置locale"
-weight: 15
+weight: 20
 date: 2021-01-18
 description: >
   修改locale设置避免报错

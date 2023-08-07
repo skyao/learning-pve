@@ -26,13 +26,13 @@ apt update && apt list --upgradable
 安装微码，intel 选择：
 
 ```bash
-apt install intel-microcode
+apt -y install intel-microcode
 ```
 
 amd 选择：
 
 ```bash
-apt install amd64-microcode
+apt -y install amd64-microcode
 ```
 
 更新完之后重启，发现之前报告要求更新 microcode 的信息消失了，搞定。
