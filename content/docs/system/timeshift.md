@@ -380,6 +380,10 @@ TODO：
   - images： 这里保存 pve 虚拟机镜像文件
   - template： iso 子目录中保存的是上传到 pve 的各种 iso/img 文件
 
+- `/etc/pve/qemu-server/`:
+
+  这个目录下存储的是虚拟机的配置文件。
+
 - 其他
 
 最后设置的 exclude 为：
@@ -390,6 +394,7 @@ TODO：
   "exclude" : [
     "/var/lib/ceph/**",
     "/var/lib/vz/**",
+    "/etc/pve/qemu-server/**",
     "/root/**"
   ],
 }

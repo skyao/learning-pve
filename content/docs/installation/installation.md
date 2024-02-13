@@ -67,6 +67,8 @@ U 盘启动后，选择安装 PVE，然后在命令行界面上看到 "Loading i
 
 这两个设置项如果在安装完成之后再开启，也会导致 PVE 启动时同样卡在 initial ramdisk 上，因此必须保证始终关闭。
 
+备注：这个问题仅有某些机器上会出现，不是所有机器都有这个问题，比如z690主板上我发现就可以开启 C3 report 和 C6 report 之后继续安装和使用。
+
 ### "create LVs"
 
 安装时，有时会遇到长时间（三五分钟）停留在 "create LVs" 处，原因不明，大部分机器没这个问题。
@@ -84,3 +86,5 @@ nvme nvme0: Device not ready; aborting initialisation, CSTS=0x0
 参考帖子：
 
 - [**联芸MAP1602主控的可以入了，掉坑里刚爬出来，P7000Z晚班车拿了四块，附内核**](https://www.chiphell.com/forum.php?mod=viewthread&tid=2524660&extra=page%3D1&ordertype=1&mobile=no)
+
+备注：pve8.1 版本之后就没有这个问题了，解决方案已经直接进入了新的 linux 内核。
