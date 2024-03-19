@@ -102,6 +102,12 @@ scp ./vzdump-qemu-102-2023_07_26-01_23_50.vma sky@192.168.0.240:/media/sky/data/
 vma extract vzdump-qemu-103-2023_04_01-13_36_26.vma extract
 ```
 
+可以通过这样的命令下载整个机器上所有的备份文件到本地磁盘（这里是苹果笔记本上插的移动硬盘）：
+
+```bash
+scp root@192.168.20.29:"/var/lib/vz/dump/vzdump-*" /Volumes/u4t/data/backup/pve-backup/skyaio2
+```
+
 ### 上传虚拟机文件
 
 类似的，将虚拟机备份文件上传到准备做恢复的 pve 上，目标路径同样为 `/var/lib/vz/dump/`

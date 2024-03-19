@@ -56,6 +56,41 @@ https://pve.proxmox.com/pve-docs/pve-admin-guide.html#installation_installer
 
 ## 常见问题
 
+### "Starting the installer GUI"
+
+安装开始后，在获取 DHCP 之后，会准备启动图形界面的安装器。然后就在这里失败，无法启动图形界面。
+
+参考： 
+
+- [Proxmox 6.2-1 installation fails after DHCP lease obtained](https://www.rpiathome.com/2020/10/21/proxmox-6-2-1-installation-fails-after-dhcp-lease-obtained/)
+- [Proxmox 安装程序无法加载 GUI 安装程序](https://www.reddit.com/r/Proxmox/comments/130of40/proxmox_installer_fail_to_load_gui_installer/)
+
+解决方法：
+
+执行
+
+```bash
+chmod 1777 /tmp   
+Xorg -configure   
+mv /xorg.conf.new /etc/X11/xorg.conf
+```
+
+再执行
+
+```bash
+vim /etc/X11/xorg.conf
+```
+
+找到 "device" 一节中的 "Driver" 设置，将值修改为 "fbdev" 。
+
+启动x 图形界面，就可以继续图形化安装 pve。
+
+```bash
+startx
+```
+
+但我遇到的问题是安装完成之后，又卡在 "Loading initial ramdisk" 了。
+
 ### "Loading initial ramdisk"
 
 U 盘启动后，选择安装 PVE，然后在命令行界面上看到 "Loading initial ramdisk ......" 之后就进入黑屏状态，无任何显示。或者是屏幕保持不变，卡死在这个界面再也无法继续。
@@ -68,6 +103,10 @@ U 盘启动后，选择安装 PVE，然后在命令行界面上看到 "Loading i
 这两个设置项如果在安装完成之后再开启，也会导致 PVE 启动时同样卡在 initial ramdisk 上，因此必须保证始终关闭。
 
 备注：这个问题仅有某些机器上会出现，不是所有机器都有这个问题，比如z690主板上我发现就可以开启 C3 report 和 C6 report 之后继续安装和使用。
+
+有人说是显卡的兼容性：
+
+- [Proxmox VE(PVE) 安装时卡顿在 loading initial ramdisk 的解决办法 - 古道轻风 - 博客园 (cnblogs.com)](https://www.cnblogs.com/88223100/p/PVE_loading-initial-ramdisk.html)
 
 ### "create LVs"
 

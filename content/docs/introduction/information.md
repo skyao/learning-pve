@@ -18,5 +18,9 @@ description: >
 
 
 
+- [Proxmox VE Helper-Scripts](https://tteck.github.io/Proxmox/): Scripts for Streamlining Your Homelab with Proxmox VE, 简化使用 Proxmox VE 家庭实验室的脚本
+
+
+
 ## 学习资料
 

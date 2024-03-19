@@ -88,12 +88,6 @@ apt list --upgradable
 apt upgrade
 ```
 
-顺便安装一些常用的软件：
-
-```bash
-apt install -y unzip net-tools iperf iperf3
-```
-
 完成后，习惯性重启。
 
 ### 参考资料
