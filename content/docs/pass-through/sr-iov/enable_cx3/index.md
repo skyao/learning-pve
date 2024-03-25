@@ -1,10 +1,10 @@
 ---
-title: "配置网卡以开启 SR-IOV"
-linkTitle: "开启 SR-IOV"
+title: "配置 CX-3 网卡以开启 SR-IOV"
+linkTitle: "开启 SR-IOV: cx-3"
 weight: 20
 date: 2021-01-18
 description: >
-  配置网卡配置以便在 pve 中开启网卡的 SR-IOV 功能
+  配置 Mellanox connextx-3 网卡配置以便在 pve 中开启网卡的 SR-IOV 功能
 ---
 
 
@@ -245,4 +245,4 @@ lspci | grep Mel
 
 - [How-to: configure Mellanox ConnectX-3 cards for SRIOV and VFS](https://forum.proxmox.com/threads/how-to-configure-mellanox-connectx-3-cards-for-sriov-and-vfs.121927/): 这个帖子对此有非常详细的讲解，我基本是按照他的指点来操作的
 
-- [PVE8.0保姆级AIO安装教程 开启网卡SRIOV,跳过虚拟交换机提高网络性能,减少CPU负载 – 小屋 (geekxw.top)](https://www.geekxw.top/?p=638): 另外一个做法。
+  
