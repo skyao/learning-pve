@@ -14,7 +14,7 @@ description: >
 安装 dkms 和用于 pve 的 linux-headers：
 
 ```bash
-apt install -y dkms
+apt install -y gcc make dkms
 apt install -y pve-headers-$(uname -r)
 apt install --fix-broken
 ```
@@ -39,7 +39,7 @@ apt install -y unzip
 apt install -y net-tools iperf iperf3
 ```
 
-
+Iperf3 安装时会询问是否系统服务（自动启动），选择 yes，这样方便需要时排查网络。
 
 
 

@@ -1,7 +1,7 @@
 ---
-title: "备份虚拟机配置文件"
-linkTitle: "备份"
-weight: 50
+title: "开启自动备份虚拟机配置文件"
+linkTitle: "备份虚拟机文件"
+weight: 45
 date: 2021-01-18
 description: >
   备份PVE的虚拟机配置文件，方便在必要时进行恢复
@@ -14,15 +14,6 @@ description: >
 ### 建立备份存放的目录
 
 建立备份存放的目录，为了不被 timeshift 影响，我们将备份目录放到 root 用户的 home 目录（即 /root 目录）。由于在前面 timeshift 设置中的 exclude 中排除了 `/root/**`，因此我们可以将备份目录放到 `/root/**` 下。
-
-```json
-  "exclude" : [
-    "/var/lib/ceph/**",
-    "/var/lib/vz/**",
-    "/etc/pve/qemu-server/**",
-    "/root/**"
-  ],
-```
 
 建立备份目录 `/root/data/backup/pve`: 
 
@@ -45,7 +36,7 @@ cd /root/data/backup/pve
 
 ![](images/config_backup_path.png)
 
-之后虚拟机配置文件就会自动备份到这个目录了。
+备份数量输入 8 。之后虚拟机配置文件就会自动备份到这个目录了。
 
 可以对比一下备份的原始数据和备份后的文件：
 

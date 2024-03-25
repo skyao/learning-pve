@@ -253,7 +253,7 @@ Writing superblocks and filesystem accounting information: done
 
 具体参考这里：
 
-https://skyao.io/learning-ubuntu-server/docs/installation/timeshift/install.html
+https://skyao.io/learning-ubuntu-server/docs/installation/timeshift/install
 
 安装配置完成后，执行
 
@@ -282,45 +282,7 @@ No snapshots found
 
 ## 使用 timeshift 进行备份
 
-### 手工备份
-
-```bash
-timeshift --create --comments "first backup after apt upgrade and basic soft install"
-```
-
-输入为：
-
-```bash
-Estimating system size...
-Creating new snapshot...(RSYNC)
-Saving to device: /dev/nvme0n1p4, mounted at path: /run/timeshift/6888/backup
-Syncing files with rsync...
-Created control file: /run/timeshift/6888/backup/timeshift/snapshots/2023-07-25_21-10-04/info.json
-RSYNC Snapshot saved successfully (41s)
-Tagged snapshot '2023-07-25_21-10-04': ondemand
-------------------------------------------------------------------------------
-```
-
-查看当前备份情况：
-
-```bash
-timeshift --list                                                                      
-Mounted '/dev/nvme0n1p4' at '/run/timeshift/7219/backup'
-Device : /dev/nvme0n1p4
-UUID   : 2411eb4e-67f1-4c7d-b633-17df1fa0c127
-Path   : /run/timeshift/7219/backup
-Mode   : RSYNC
-Status : OK
-1 snapshots, 64.5 GB free
-
-Num     Name                 Tags  Description                                            
-------------------------------------------------------------------------------
-0    >  2023-07-25_21-10-04  O     first backup after apt upgrade and basic soft install  
-```
-
-结合备份之前看到的 timeshift 备份分区的大小为 65.8G，减去这里的 64.5 GB free，也就是这个备份用掉了 1.3 G 的磁盘空间。
-
-### 自动备份
+### 设置自动备份
 
 ```bash
 vi /etc/timeshift/timeshift.json
@@ -361,15 +323,15 @@ vi /etc/timeshift/timeshift.json
 
 ```
 
-TODO： 
+- `/var/lib/ceph/`： ceph 相关的文件
 
-后续再看要怎么设置 timeshift 的 excludes，排除不需要备份的内容。
+- `/root/`: root 用户的 home 路径，如果使用其他用户，也需要将它们的 home 目录加入进来。
 
+但这些是不够的，还需要增加以下内容：
 
+- `/var/lib/vz/`
 
-- `/var/lib/vz`: 
-
-  这个目录下存储的是各种文件：
+  pve的各种文件，包括虚拟机，模版，备份，上传的iso文件等都在这里，这些文件太大，不适合用 timeshift 备份，因此必须排除。
 
   ```bash
   ls /var/lib/vz
@@ -380,23 +342,63 @@ TODO：
   - images： 这里保存 pve 虚拟机镜像文件
   - template： iso 子目录中保存的是上传到 pve 的各种 iso/img 文件
 
-- `/etc/pve/qemu-server/`:
+- `/etc/pve/qemu-server/`: pve 的虚拟机配置文件，这些文件也不要用 timeshift 备份，避免恢复时把虚拟机文件也给覆盖了。虚拟机文件的备份会由下一节中提到的自动脚本进行备份。
 
-  这个目录下存储的是虚拟机的配置文件。
+- `/mnt/pve`: 在 pve 下使用 nfs 存储时，远程 nfs 会自动 mount 到这个目录下，这些文件肯定也不能被 timeshift 备份。因此必须排除。 
 
-- 其他
-
-最后设置的 exclude 为：
+最后通过设置的 exclude 为：
 
 ```bash
 {
   ......
   "exclude" : [
     "/var/lib/ceph/**",
+    "/root/**",
     "/var/lib/vz/**",
     "/etc/pve/qemu-server/**",
-    "/root/**"
+    "/mnt/pve/**"
   ],
 }
 ```
 
+### 设置自动备份虚拟机文件
+
+见下一章，推荐完成这个操作之后再执行手工备份。
+
+### 手工备份
+
+```bash
+timeshift --create --comments "first backup after apt upgrade and basic soft install"
+```
+
+输入为：
+
+```bash
+Estimating system size...
+Creating new snapshot...(RSYNC)
+Saving to device: /dev/nvme0n1p4, mounted at path: /run/timeshift/6888/backup
+Syncing files with rsync...
+Created control file: /run/timeshift/6888/backup/timeshift/snapshots/2023-07-25_21-10-04/info.json
+RSYNC Snapshot saved successfully (41s)
+Tagged snapshot '2023-07-25_21-10-04': ondemand
+------------------------------------------------------------------------------
+```
+
+查看当前备份情况：
+
+```bash
+timeshift --list                                                                      
+Mounted '/dev/nvme0n1p4' at '/run/timeshift/7219/backup'
+Device : /dev/nvme0n1p4
+UUID   : 2411eb4e-67f1-4c7d-b633-17df1fa0c127
+Path   : /run/timeshift/7219/backup
+Mode   : RSYNC
+Status : OK
+1 snapshots, 64.5 GB free
+
+Num     Name                 Tags  Description                                            
+------------------------------------------------------------------------------
+0    >  2023-07-25_21-10-04  O     first backup after apt upgrade and basic soft install  
+```
+
+结合备份之前看到的 timeshift 备份分区的大小为 65.8G，减去这里的 64.5 GB free，也就是这个备份用掉了 1.3 G 的磁盘空间。

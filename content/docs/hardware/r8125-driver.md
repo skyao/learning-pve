@@ -1,6 +1,6 @@
 ---
-title: "安装r8125驱动"
-linkTitle: "r8125驱动"
+title: "[归档]安装r8125驱动"
+linkTitle: "[归档]r8125驱动"
 weight: 20
 date: 2023-07-09
 description: >
@@ -15,19 +15,15 @@ description: >
 
 因为这个网卡是用于管理网络的，所以 pve 也跟着失联了......
 
-因此，放弃更新这个驱动
+因此，放弃更新这个驱动。后续移除了所有的 2.5g 网卡，统一使用 cx3 pro 40g （hp544+）或者 cx4 25g 网卡。
 
 ## 准备工作
-
-
 
 ```bash
 apt install -y dkms
 apt install -y pve-headers-$(uname -r)
 apt install --fix-broken
 ```
-
-
 
 ## 下载驱动
 

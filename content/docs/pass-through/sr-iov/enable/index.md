@@ -35,110 +35,44 @@ https://skyao.io/learning-computer-hardware/nic/hp544/firmware/
 -I- You can install missing packages using: apt-get install linux-headers linux-headers-generic
 ```
 
-这两个包还不能直接用 `apt install` 进行安装：
+安装：
 
 ```bash
-$ apt install linux-headers  
-
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-Package linux-headers is not available, but is referred to by another package.
-This may mean that the package is missing, has been obsoleted, or
-is only available from another source
-
-E: Package 'linux-headers' has no installation candidate
+apt install -y gcc make dkms
+apt install -y pve-headers-$(uname -r)
+apt install --fix-broken
 ```
 
-正确的安装方式是安装 pve-headers，但默认情况下 pve-headers 也是找不到的：
-
-```bash
-$ apt apt install pve-headers  
-
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-E: Unable to locate package pve-headers
-```
-
-需要添加 pve-no-subscriptio 仓库才行。
-
-```bash
-vi /etc/apt/sources.list.d/pve-no-subscription.list
-```
-
-设置内容：
-
-```properties
-deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bookworm pve-no-subscription
-```
-
-`apt update` 之后就可以安装 pve-headers 了：
-
-```bash
-apt install pve-headers                            
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following additional packages will be installed:
-  pve-headers-6.2 pve-headers-6.2.16-4-pve pve-kernel-6.2 pve-kernel-6.2.16-4-pve
-The following NEW packages will be installed:
-  pve-headers pve-headers-6.2 pve-headers-6.2.16-4-pve pve-kernel-6.2.16-4-pve
-The following packages will be upgraded:
-  pve-kernel-6.2
-1 upgraded, 4 newly installed, 0 to remove and 26 not upgraded.
-Need to get 111 MB of archives.
-After this operation, 659 MB of additional disk space will be used.
-Do you want to continue? [Y/n] 
-```
-
-安装完成之后，需要重启，否则直接安装 mft，依然会继续同样报错：
-
-```bash
-./install.sh 
--E- There are missing packages that are required for installation of MFT.
--I- You can install missing packages using: apt-get install linux-headers linux-headers-generic
-```
-
-这里描述了 linux-headers 和 pve-headers-6.2 的关系：  linux-headers 只是一个虚拟的包，有多个提供者，在当前6.2版本的 pve 上就是 pve-headers-6.2 ：
-
-```bash
-apt-get install linux-headers linux-headers-generic
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-Package linux-headers-generic is a virtual package provided by:
-  pve-headers-6.2 8.0.3
-  pve-headers-6.1 7.3-4
-  linux-headers-amd64 6.1.38-1
-You should explicitly select one to install.
-
-Package linux-headers is not available, but is referred to by another package.
-This may mean that the package is missing, has been obsoleted, or
-is only available from another source
-
-E: Package 'linux-headers' has no installation candidate
-E: Package 'linux-headers-generic' has no installation candidate
-```
+安装完成之后，需要重启，否则直接安装 mft，依然会继续同样报错。
 
 ### 安装 mft 
 
-需要 mft 工具修改 ConnectX 网卡的配置，下载安装方式为：
+需要 mft 工具修改 ConnectX 网卡的配置，对于 cx3 pro （hp544+）网卡下载安装方式为：
 
 ```bash
+mkdir -p ~/work/soft/mellanox
+cd ~/work/soft/mellanox
+
 wget --no-check-certificate https://www.mellanox.com/downloads/MFT/mft-4.24.0-72-x86_64-deb.tgz
 tar xvf mft-4.24.0-72-x86_64-deb.tgz
 cd mft-4.24.0-72-x86_64-deb
 ```
 
-如果缺少依赖包会导致安装失败，可以先apt命令安装以下包 （以及前面的 pve-headers）：
+对于 cx4 / cx5 等新一点的网卡，可以安装 mft 最新版本。
 
 ```bash
-apt-get install gcc make dkms
+wget --no-check-certificate https://www.mellanox.com/downloads/MFT/mft-4.27.0-83-x86_64-deb.tgz
+tar xvf mft-4.27.0-83-x86_64-deb.tgz
+cd mft-4.27.0-83-x86_64-deb
+```
+
+执行安装脚本:
+
+```bash
 ./install.sh
 ```
 
-成功时的输出为：
+输出为：
 
 ```bash
 -I- Removing mft external packages installed on the machine
@@ -150,6 +84,8 @@ apt-get install gcc make dkms
 ### 下载 mlxup
 
 ```bash
+cd ~/work/soft/mellanox
+
 wget https://www.mellanox.com/downloads/firmware/mlxup/4.22.1/SFX/linux_x64/mlxup
 chmod +x ./mlxup
 ./mlxup
@@ -181,10 +117,6 @@ Device #1:
 ```bash
 apt install mstflint
 ```
-
-
-
-
 
 ## 设置网卡
 
@@ -273,13 +205,12 @@ mlxconfig -d /dev/mst/mt4103_pciconf0 set SRIOV_EN=1 NUM_OF_VFS=8
 vi /etc/modprobe.d/mlx4_core.conf
 ```
 
-输入内容：
+对于 hp544+ 网卡，输入内容为（在双头网卡上配置8个VF, 都在端口1上生效）：
 
 ```bash
-options mlx4_core num_vfs=4,4,0 port_type_array=2,2 probe_vf=4,4,0 probe_vf=4,4,0
+options mlx4_core port_type_array=2,2 num_vfs=8,0,0 probe_vf=8,0,0 log_num_mgm_entry_size=-1
 options mlx4_core enable_sys_tune=1
 options mlx4_en inline_thold=0
-options mlx4_core log_num_mgm_entry_size=-7
 ```
 
 执行：
