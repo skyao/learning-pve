@@ -16,3 +16,25 @@ description: >
 
 - 登录节点：可以从 web 或者 ssh
 - 执行命令： `qm stop 100` （100 是虚拟机编号，自行替代）
+
+
+
+### 修改虚拟机配置文件
+
+重启 pve，在启动菜单中选择高级选项，然后选择恢复模式。
+
+恢复模式启动后，输入 root 账号密码登录。
+
+启动 pve-cluster ：
+
+```bash
+service pve-cluster start
+```
+
+进入 qemu-server：
+
+```bash
+cd /etc/pve/qemu-server
+```
+
+这时就可以直接编辑和修改虚拟机配置文件了。
