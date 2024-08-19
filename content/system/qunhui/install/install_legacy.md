@@ -1,11 +1,13 @@
 ---
 title: "安装黑群晖"
-linkTitle: "安装"
-weight: 10
+linkTitle: "[归档]安装"
+weight: 100
 date: 2021-01-18
 description: >
   在 pve 下安装黑群晖
 ---
+
+备注： 由于 https://github.com/fbelavenuto/arpl/ 仓库已经归档不再更新，因此这个安装方式也只能归档
 
 ## 下载
 
