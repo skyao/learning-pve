@@ -15,7 +15,7 @@ description: >
 
 参考：
 
-https://skyao.io/learning-ubuntu-server/docs/installation/basic/zsh
+https://skyao.io/learning-ubuntu-server/docs/installation/basic/zsh/
 
 ```bash
 apt -y install zsh zsh-doc
@@ -39,6 +39,6 @@ export all_proxy=socks5://192.168.0.1:7891;export http_proxy=http://192.168.0.1:
 
 参考：
 
-https://skyao.io/learning-ubuntu-server/docs/installation/basic/zsh
+https://skyao.io/learning-ubuntu-server/docs/installation/basic/zsh/
 
 完成后退出登录，然后重新登录进来，发现熟悉的 zsh 回来了。
