@@ -17,15 +17,15 @@ https://github.com/ivanhao/pvetools
 export LC_ALL=en_US.UTF-8
 apt update
 apt -y install git 
-mkdir -p work/soft
-cd work/soft
+mkdir -p ~/work/soft
+cd ~/work/soft
 git clone https://github.com/ivanhao/pvetools.git
 ```
 
 ## 使用
 
 ```bash
-cd pvetools
+cd ~/work/soft/pvetools
 ./pvetools.sh
 ```
 

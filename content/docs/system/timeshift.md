@@ -344,7 +344,10 @@ vi /etc/timeshift/timeshift.json
 
 - `/etc/pve/qemu-server/`: pve 的虚拟机配置文件，这些文件也不要用 timeshift 备份，避免恢复时把虚拟机文件也给覆盖了。虚拟机文件的备份会由下一节中提到的自动脚本进行备份。
 
+- `/root/data/backup/pve/pveConfBackup`: pve虚拟机文件的自动备份目录，详情见下一节。
+
 - `/mnt/pve`: 在 pve 下使用 nfs 存储时，远程 nfs 会自动 mount 到这个目录下，这些文件肯定也不能被 timeshift 备份。因此必须排除。 
+
 
 最后通过设置的 exclude 为：
 
@@ -356,6 +359,7 @@ vi /etc/timeshift/timeshift.json
     "/root/**",
     "/var/lib/vz/**",
     "/etc/pve/qemu-server/**",
+    "/root/data/backup/pve/pveConfBackup/**",
     "/mnt/pve/**"
   ],
 }

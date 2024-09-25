@@ -80,3 +80,17 @@ rm /etc/pve/qemu-server/*
 cp /root/data/backup/pve/pveConfBackup/20240315/* /etc/pve/qemu-server/
 ```
 
+## 配置 timeshift excludes
+
+注意：必须将虚拟机配置文件备份路径加入到 timeshift excludes 中，避免在通过 timeshift 进行恢复时丢失备份的数据。
+
+```json
+{
+  ......
+  "exclude" : [
+    ......
+    "/root/data/backup/pve/pveConfBackup/**",
+    ......
+  ],
+}
+```
