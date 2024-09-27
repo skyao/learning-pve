@@ -102,11 +102,33 @@ U 盘启动后，选择安装 PVE，然后在命令行界面上看到 "Loading i
 
 这两个设置项如果在安装完成之后再开启，也会导致 PVE 启动时同样卡在 initial ramdisk 上，因此必须保证始终关闭。
 
-备注：这个问题仅有某些机器上会出现，不是所有机器都有这个问题，比如z690主板上我发现就可以开启 C3 report 和 C6 report 之后继续安装和使用。
+备注：这个问题仅有某些机器(x99主板)上会出现，不是所有机器都有这个问题，比如z690主板上我发现就可以开启 C3 report 和 C6 report 之后继续安装和使用。
 
-有人说是显卡的兼容性：
+有人说是显卡的兼容性，可以通过使用集显来绕开这个问题：
 
 - [Proxmox VE(PVE) 安装时卡顿在 loading initial ramdisk 的解决办法 - 古道轻风 - 博客园 (cnblogs.com)](https://www.cnblogs.com/88223100/p/PVE_loading-initial-ramdisk.html)
+
+也有通过增加 nomodeset 参数来解决的： 
+
+https://mengkai.fun/archives/1717297733491
+
+我测试中发现（z690主板 + 13700kf cpu + nvidia 亮机卡）并不能解决问题： 1. 在Terminal UI界面通过增加参数 nomodeset 跳过这个报错之后，虽然安装成功，但是 pve 用不了。 2. 在 在 Graphic UI界面也可以增加参数 nomodeset，但随后的图形界面会有显示bug，无法正确显示。
+
+最后，发现可能和 nvidia 显卡有关，因为出现报错:
+
+```bash
+loading dirvers: nvidiafb .......................
+```
+
+- https://www.reddit.com/r/Proxmox/comments/1cuvv2q/proxmox_821_installer_is_stuck_at_loading_some/?rdt=46925
+- https://forum.proxmox.com/threads/installing-proxmox-8-1-crashing-when-loading-nvidiafb-driver.143363/
+
+解决方法有两个：
+
+1. 如果有集成显卡，请使用集成显卡进行安装，这样就不会载入 nvidiafb
+2. 可以换成 amd 显卡
+
+注意这个报错只出现在 pve 安装时，安装完成后 nvidia 显卡时可以使用的。因此有一个绕开这个问题的做法就是：先用集成显卡或者 amd 独立显卡完成 pve 的安装之后，再换成 nvidia 显卡。
 
 ### "create LVs"
 
