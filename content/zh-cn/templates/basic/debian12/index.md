@@ -1,10 +1,10 @@
 ---
-title: "基础模板"
-linkTitle: "基础模板"
+title: "debian12 基础模板"
+linkTitle: "debian12"
 weight: 10
-date: 2024-11-14
+date: 2025-03-04
 description: >
-  debian pve 基础模板
+  debian12 pve 基础模板
 ---
 
 
