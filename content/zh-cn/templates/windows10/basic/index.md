@@ -1,7 +1,7 @@
 ---
 title: "windows10 基础模板"
-linkTitle: "windows10"
-weight: 20
+linkTitle: "基础模板"
+weight: 10
 date: 2025-03-04
 description: >
   windows10 pve 基础模板

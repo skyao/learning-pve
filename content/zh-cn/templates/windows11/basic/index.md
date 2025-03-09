@@ -1,7 +1,7 @@
 ---
 title: "windows11 基础模板"
-linkTitle: "windows11"
-weight: 30
+linkTitle: "基础模板"
+weight: 10
 date: 2025-03-04
 description: >
   windows11 pve 基础模板
