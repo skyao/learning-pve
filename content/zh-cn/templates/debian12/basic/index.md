@@ -62,3 +62,11 @@ Build-time: 2025-03-09
 参考 debian12 学习笔记的安装文档 
 
 https://skyao.io/learning-pve/docs/installation/ 
+
+迁移到其他区域时，需要进行部分修改，主要是代理设置。
+
+修改内容如下：
+
+- `/home/sky/.zshrc` 文件中，proxyon 的设置
+- `/root/.zshrc` 文件中，proxyon 设置
+
