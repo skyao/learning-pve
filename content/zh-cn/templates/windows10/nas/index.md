@@ -36,7 +36,7 @@ Installed software:
 - hanewin nfs 服务器/nginx服务器
 - plex media server/完美解码
 - zerotier/qBittorrent
-- 百度云盘/夸克网盘
+- 百度云盘/
 - scarletbook/audio-converter/Tag&Rename/tinymediamanager
 
 ## 模板实例
