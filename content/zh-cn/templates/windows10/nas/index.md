@@ -61,7 +61,7 @@ Installed software:
 
 ### skynas5-nansha
 
-用在汾湖 switch98 机器上，用来充当南沙住所的工作用 nas 服务器。
+用在南沙 switch99 机器上，用来充当南沙住所的工作用 nas 服务器。
 
 磁盘为一块 1t 的 nvme ssd 硬盘（三星pm983）和一块 16t 机械硬盘。
 
