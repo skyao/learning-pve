@@ -17,6 +17,27 @@ windows10 pve 的基础模板，只包含最基本的软件和设置。
 
 ## 版本更新
 
+### v02（计划中）
+
+| 操作系统 | 模板类型 | 模板类型编号 |  模板编号 | 模板名称 | 
+| -------- | -------- | -------- | -------- | -------- | 
+| windows10 | basic | 21 | 2101 | template-windows10-basic-v02 | 
+
+name: template-windows10-basic-v02
+
+pve templete for windows 10 (v02)
+
+Build-time: 待定
+
+Installed software:
+
+- everything/acdsee
+
+System config：
+
+- 解决 non unicode 中文乱码问题： https://skyao.io/learning-windows11/docs/installation/system-settings/#%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81
+- windows update 到最新
+
 ### v01
 
 | 操作系统 | 模板类型 | 模板类型编号 |  模板编号 | 模板名称 | 
