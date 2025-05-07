@@ -7,7 +7,7 @@ description: >
   开发服务器用来作为辅助开发的服务器，提供开发需要用到的各种工具
 ---
 
-## 说明
+## 模板说明
 
 debian pve 的开发服务器模板，基于 debian 12 基础模板，包含软件开发的各种工具和sdk。
 
@@ -17,15 +17,22 @@ debian pve 的开发服务器模板，基于 debian 12 基础模板，包含软�
 | -------- | -------- | -------- | 
 | debian12 | devserver | 03 | 
 
+### 制作方法
+
+参考 debian12 学习笔记的模板制作方法文档：
+
+https://skyao.io/learning-debian/templates/devserver/ 
+
 ## 版本更新
 
-### v01
+### v01/v02
 
-| 操作系统 | 模板类型 | 模板类型编号 |  模板编号 | 模板名称 | 
-| -------- | -------- | -------- | -------- | -------- | 
-| debian12 | devserver | 03 | 0301 | template-debian12-devserver-v01 | 
+| 模板编号 | 模板名称 | 模板使用场所 |
+|  -------- | -------- | -------- |
+| 0301 | template-debian12-devserver-v01 | 苏州汾湖（192.168.3.1） |
+| 0302 | template-debian12-devserver-v02 | 广州南沙（192.168.0.1） |
 
-#### 模板说明
+#### 模板说明-v01
 
 name: template-debian12-devserver-v01
 
@@ -34,15 +41,20 @@ Devserver pve template for debian 12.
 Installed software:
 
 - docker/docker-compose/habor
-- sdkman/java17/maven/artifactory
+- sdkman/nexus
 
-Supported languages:
+Installed SDK for languages: Java/Golang/Rust/Python/Nodejs
 
-- Java
+Build-time: 2025-05-07
 
-Build-time: 2025-04-02
+#### 模板说明-v02
 
-### 构建方法
+v01 迁移到其他区域时，需要进行部分修改，主要是IP地址需要从 192.168.3.91 修改为 192.168.0.92，另外两块 sdd 硬盘是直通的，因此需要重新挂载并到 `/mnt/data` 目录。
 
-- docker/docker-compose: https://skyao.io/learning-docker/docs/installation/debian12/
-- habor: https://skyao.io/learning-docker/docs/repository/habor/
+修改内容如下：
+
+- `/home/sky/.zshrc` 文件中，proxyon 的设置
+- `/root/.zshrc` 文件中，proxyon 设置
+
+修改之后，重新制作模板并命名为 template-debian12-devserver-v02。
+
