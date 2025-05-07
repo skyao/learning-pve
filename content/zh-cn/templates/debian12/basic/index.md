@@ -58,8 +58,8 @@ v03 迁移到其他区域时，需要进行部分修改，主要是代理设置�
 
 修改内容如下：
 
-- `/home/sky/.zshrc` 文件中，proxyon 的设置
-- `/root/.zshrc` 文件中，proxyon 设置
+- `/home/sky/.zshrc` 文件中，proxyon 设置为 proxyon-nansha
+- `/root/.zshrc` 文件中，proxyon 设置为 proxyon-nansha
 
 修改之后，重新制作模板并命名为 template-debian12-basic-v04。
 
