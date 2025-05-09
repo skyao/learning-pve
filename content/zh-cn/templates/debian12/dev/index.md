@@ -28,43 +28,15 @@ debian pve 的开发模板，基于 debian 12 基础模板，包含软件开发�
 
 name: template-debian12-dev-v01
 
-Dev pve template for debian 12.
+Development pve template for debian 12.
 
 Installed software:
 
-- xxx
+- sdkman/maven/pip/npm/
+- docker/docker-compose/kubectl
 
-Supported languages:
+Supported languages: Golang/Java/Rust/Python/Nodejs
 
-- Golang
-- Java
-- Rust
-- Python
-- Nodejs
+Build-time: 2025-05-08
 
-Install development tools:
 
-- linux headers
-
-- apt install zlib1g-dev 
-
-System Config:
-
-- add proxyon/proxyoff alias for different locations
-- fix path for user root and sky
-
-Build-time: 2025-03-16
-
-#### 构建方法
-
-安装 linux headers:
-
-```bash
-sudo apt-get install linux-headers-$(uname -r)
-```
-
-安装各种开发包：
-
-```bash
-sudo apt install zlib1g-dev
-```

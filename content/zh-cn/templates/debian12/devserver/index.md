@@ -32,7 +32,7 @@ https://skyao.io/learning-debian/templates/devserver/
 | 0301 | template-debian12-devserver-v01 | 苏州汾湖（192.168.3.1） |
 | 0302 | template-debian12-devserver-v02 | 广州南沙（192.168.0.1） |
 
-#### 模板说明-v01
+#### 模板说明
 
 name: template-debian12-devserver-v01
 
@@ -47,14 +47,4 @@ Installed SDK for languages: Java/Golang/Rust/Python/Nodejs
 
 Build-time: 2025-05-07
 
-#### 模板说明-v02
-
-v01 迁移到其他区域时，需要进行部分修改，主要是IP地址需要从 192.168.3.91 修改为 192.168.0.92，另外两块 sdd 硬盘是直通的，因此需要重新挂载并到 `/mnt/data` 目录。
-
-修改内容如下：
-
-- `/home/sky/.zshrc` 文件中，proxyon 的设置
-- `/root/.zshrc` 文件中，proxyon 设置
-
-修改之后，重新制作模板并命名为 template-debian12-devserver-v02。
 
