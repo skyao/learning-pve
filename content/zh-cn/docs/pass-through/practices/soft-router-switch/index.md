@@ -65,7 +65,7 @@ description: >
 
 1. 用于软路由的 openwrt
 
-   安装的方法参考 https://skyao.io/learning-openwrt/docs/installation/pve/ 
+   安装的方法参考 https://skyao.net/learning-openwrt/docs/installation/pve/ 
 
    > 注意: 先不要开启开机自动启动
 
@@ -291,10 +291,7 @@ ip addr
 
 这是因为 enp1s0 是 VF，而另外一个 VF 在前面被我们直通给了 openwrt 主机。两个网段之间的联系（包括和管理网络的联系）就是通过这样的方式建立起来的。
 
-之后按照软交换的设置方式，参考 https://skyao.io/learning-ubuntu-server/docs/router/router.html
-
-
-
+之后按照软交换的设置方式，参考 https://skyao.net/learning-ubuntu-server/docs/switch/
 
 
 ### 切换管理网络为高速网络

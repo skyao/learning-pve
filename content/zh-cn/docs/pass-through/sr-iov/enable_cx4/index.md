@@ -15,7 +15,7 @@ description: >
 
 对于 mcx4121 网卡，参考：
 
-https://skyao.io/learning-computer-hardware/nic/cx4121a/firmware/
+https://skyao.net/learning-computer-hardware/nic/cx4121a/firmware/
 
 ### 设置主板bios
 

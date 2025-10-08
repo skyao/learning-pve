@@ -11,6 +11,6 @@ description: >
 
 参考：
 
-https://skyao.io/learning-debian/docs/installation/basic/zsh/
+https://skyao.net/learning-debian/docs/installation/basic/zsh/
 
 完成后退出登录，然后重新登录进来，发现熟悉的 zsh 和 ohmyzsh 回来了。

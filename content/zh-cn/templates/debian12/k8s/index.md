@@ -19,7 +19,7 @@ debian pve 的 k8s 模板，基于 debian 12 基础模板，提供 k8s 的预热
 
 参考 debian 学习笔记的模板制作方法文档：
 
-https://skyao.io/learning-debian/templates/basic/
+https://skyao.net/learning-debian/templates/basic/
 
 ## 版本更新
 

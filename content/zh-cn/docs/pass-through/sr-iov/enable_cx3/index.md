@@ -15,7 +15,7 @@ description: >
 
 对于 HP544+ 网卡，参考：
 
-https://skyao.io/learning-computer-hardware/nic/hp544/firmware/
+https://skyao.net/learning-computer-hardware/nic/hp544/firmware/
 
 ### 设置主板bios
 

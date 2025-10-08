@@ -21,7 +21,7 @@ debian pve 的开发服务器模板，基于 debian 12 基础模板，包含软�
 
 参考 debian12 学习笔记的模板制作方法文档：
 
-https://skyao.io/learning-debian/templates/devserver/ 
+https://skyao.net/learning-debian/templates/devserver/ 
 
 ## 版本更新
 

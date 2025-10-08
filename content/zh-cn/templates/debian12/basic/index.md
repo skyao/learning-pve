@@ -19,7 +19,7 @@ debian pve 的基础模板，只包含最基本的软件和设置。
 
 参考 debian12 学习笔记的模板制作方法文档：
 
-https://skyao.io/learning-debian/templates/basic/ 
+https://skyao.net/learning-debian/templates/basic/ 
 
 ## 版本更新
 

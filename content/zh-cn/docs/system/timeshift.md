@@ -253,7 +253,7 @@ Writing superblocks and filesystem accounting information: done
 
 具体参考这里：
 
-https://skyao.io/learning-ubuntu-server/docs/installation/timeshift/install/
+https://skyao.net/learning-ubuntu-server/docs/installation/timeshift/install/
 
 安装配置完成后，执行
 

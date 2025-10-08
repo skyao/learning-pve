@@ -52,4 +52,4 @@ Build-time: 2025-03-09
 
 参考 openwrt 学习笔记的安装文档 
 
-https://skyao.io/learning-openwrt/docs/installation/pve
+https://skyao.net/learning-openwrt/docs/installation/pve

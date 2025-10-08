@@ -9,7 +9,7 @@ description: >
 
 ### 虚拟机备份
 
-参考: https://skyao.io/learning-pve/docs/vm/backup/backup/
+参考: https://skyao.net/learning-pve/docs/vm/backup/backup/
 
 pve下虚拟机备份的目录在: `/var/lib/vz/dump/`
 
