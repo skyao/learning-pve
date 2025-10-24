@@ -7,6 +7,8 @@ description: >
   配置国内的更新源
 ---
 
+## pve8
+
 修改之前先备份一下：
 
 ```bash
@@ -93,3 +95,108 @@ apt upgrade
 ### 参考资料
 
 - [PVE 8.0 (Proxmox) 虚拟机系统](https://www.iplaysoft.com/pve.html)
+
+## pve9
+
+PVE 9.0 基于 Debian 13，除了换 Debian 的软件源以外，还需要编辑企业源、Ceph 源、无订阅源以及 CT 模板源。
+
+### 设置 debian 源
+
+修改之前先备份一下：
+
+```bash
+cp -r /etc/apt/sources.list.d/ /etc/apt/sources.list.d.original
+```
+
+修改 debian 源：
+
+```bash
+vi /etc/apt/sources.list.d/debian.sources
+```
+
+删除原有内容，添加如下内容：
+
+```properties
+Types: deb
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+Suites: trixie trixie-updates trixie-backports
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+# Types: deb-src
+# URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+# Suites: trixie trixie-updates trixie-backports
+# Components: main contrib non-free non-free-firmware
+# Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+# 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换
+Types: deb
+URIs: https://security.debian.org/debian-security
+Suites: trixie-security
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+# Types: deb-src
+# URIs: https://security.debian.org/debian-security
+# Suites: trixie-security
+# Components: main contrib non-free non-free-firmware
+# Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+```
+
+### 删除企业源
+
+```bash
+rm -rf /etc/apt/sources.list.d/pve-enterprise.sources
+```
+
+### Ceph 源
+
+修改 Ceph 源：
+
+```bash
+vi /etc/apt/sources.list.d/ceph.sources
+```
+
+删除原有内容，添加如下内容：
+
+```properties
+Types: deb
+URIs: https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian/ceph-squid
+Suites: trixie
+Components: no-subscription
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+```
+
+### 无订阅源
+
+```bash
+vi /etc/apt/sources.list.d/pve-no-subscription.sources
+```
+
+内容如下：
+
+```properties
+Types: deb
+URIs: https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian/pve
+Suites: trixie
+Components: pve-no-subscription
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+```
+
+### CT 模板源
+
+如果需要用到 PVE 中的 LXC 容器，则需要替换 CT 模板源：
+
+```bash
+cp /usr/share/perl5/PVE/APLInfo.pm /usr/share/perl5/PVE/APLInfo.pm.original
+sed -i 's|http://download.proxmox.com|https://mirrors.tuna.tsinghua.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
+```
+
+### 更新
+
+```bash
+apt update
+apt upgrade
+```
+

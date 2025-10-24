@@ -15,8 +15,10 @@ https://www.proxmox.com/en/downloads
 
 主要下载：
 
+- Proxmox VE 9.0 ISO Installer
 - PVE 8.0 ISO installer
 - Proxmox Backup Server 3.0 ISO Installer
+- Proxmox Backup Server 4.0 ISO Installer
 
 支持 BitTorrent 下载！
 

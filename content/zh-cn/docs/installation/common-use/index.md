@@ -64,5 +64,5 @@ Subsystem sftp internal-sftp
 
 之后用支持 sftp 的客户端连接即可，比如在 windows 上我现在一般使用 filezilla pro 连接。
 
-## 开发类
+
 
