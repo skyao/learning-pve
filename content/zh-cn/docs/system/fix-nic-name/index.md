@@ -188,7 +188,92 @@ $ udevadm info -a /sys/class/net/enp6s0f1np1 | grep "KERNELS==" | head -n 1
 
 这样 vmbr0 的 bridge-ports 就可以写成 `en1g1 en25g1 en25g2 en25g3 en25g4`，之后不管网卡顺序和pcie设备调整，都不会影响 vmbr0 的 bridge-ports 工作。
 
-## 实现方案
+## 实现方案(pve9)
+
+注意：在 Proxmox VE 9（基于 Debian 13）中，固定网卡名称的方式与 PVE 8（基于 Debian 12）有所不同，主要是因为 Debian 13 对 udev 规则的处理逻辑做了调整，传统的 70-persistent-net.rules 方式可能不再生效。
+
+在 PVE 9 中，推荐通过 systemd 的 .link 配置文件 来固定网卡名称，这是更现代且兼容的方式。
+
+步骤如下：
+
+1. 找出需要固定的网卡 MAC 地址
+
+     ```bash
+     $ ip addr
+
+     2: enp1s0np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq master vmbr0 state UP group default qlen 1000
+     link/ether 8c:4a:8e:88:7d:5a brd ff:ff:ff:ff:ff:ff
+     ```
+
+2. 创建 .link 配置文件
+
+     ```bash
+     vi /etc/systemd/network/10-static-enp1s0np0.link
+     ```
+
+     内容为：
+
+     ```properties
+     [Match]
+     MACAddress=8c:3a:8e:88:7d:5a
+
+     [Link]
+     Name=en100g1
+     ```
+
+3. 修改 vmbr0 的配置
+
+     因为一般都是远程操作，为了安全起见，重命名前后的两个网卡名字都加入到 vmbr0，以防万一出错时无法连接管理网络：
+
+     ```bash
+     vi /etc/network/interfaces
+     ```
+
+     内容为：
+
+     ```properties
+     iface enp1s0np0 inet manual
+     iface en100g1 inet manual
+     
+     auto vmbr0
+     iface vmbr0 inet static
+            ......
+            bridge-ports enp1s0np0 en100g1
+    ```
+
+4. 重启
+
+     ```bash
+     reboot
+     ```
+
+     之后查看网卡名称发现已经固定：
+
+     ```bash
+     $ ip addr
+
+     2: en100g1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq master vmbr0 state UP group default qlen 1000
+     link/ether 8c:3a:8e:88:7d:5a brd ff:ff:ff:ff:ff:ff
+     altname enx8c2a8e886d5a
+     ```
+
+5. 修复 vmbr0 的 bridge-ports，把改名之前的网卡名字去掉。
+
+对于只有多个网卡的情况，操作要复杂一下，主要是需要区分是哪些网卡。如我这里有一台机器上有 100g 和 25g 两块双头网卡， 提供四个网口，其中 100g 网卡提供两个网口，25g 网卡提供两个网口。
+
+需要通过下面两个命令找出哪些网卡是 100g 网卡，哪些网卡是 25g 网卡， 记录好 mac 地址，然后再逐个网口进行操作：
+
+```bash
+ip addr
+lspci | grep Ethernet
+
+vi /etc/systemd/network/10-static-en25g1.link
+vi /etc/systemd/network/10-static-en25g2.link
+vi /etc/systemd/network/10-static-en100g1.link
+vi /etc/systemd/network/10-static-en100g2.link
+```
+
+## 实现方案(pve8)
 
 ### 准备脚本
 

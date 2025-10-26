@@ -1,7 +1,7 @@
 ---
 title: "[归档]安装r8125驱动"
 linkTitle: "[归档]r8125驱动"
-weight: 20
+weight: 30
 date: 2023-07-09
 description: >
   为relteck 8125 2.5G网卡安装驱动
