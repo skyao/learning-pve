@@ -20,7 +20,8 @@ description: >
 模板命名由四部分组成：
 
 1. 第一部分为固定前缀 template
-2. 第二部分为模板操作系统：如 debian12, windows10, windows11，openwrt
+2. 第二部分为模板操作系统：如 debian12/13, windows10, windows11，openwrt
+   - debian13: debian 13 系列模板
    - debian12: debian 12 系列模板
    - windows10: windows 10 系列模板
    - windows11: windows 11 系列模板
@@ -40,11 +41,12 @@ description: >
 
     | 操作系统 | 模板编号 | 备注 |
     | -------- | -------- | -------- |
-    | debian12 | 01-19 | 预留20个 |
-    | windows10 | 21-29 | 预留10个 |
-    | windows11 | 31-39 | 预留10个 |
-    | 备用 | 41-79 |  |
-    | openwrt | 81-99 | 预留20个，给各种杂项 |
+    | debian12 | 00-09 | 预留10个 |
+    | debian13 | 10-19 | 预留10个 |
+    | windows10 | 20-29 | 预留10个 |
+    | windows11 | 30-39 | 预留10个 |
+    | 备用 | 40-79 |  |
+    | openwrt | 80-99 | 预留20个，给各种杂项 |
 
 2. 第二部分为模板版本： 如 v01, v02, v03 对应于 01/02/03，最大版本号为 99
 
