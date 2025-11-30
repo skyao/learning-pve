@@ -9,20 +9,19 @@ description: >
 
 ## 模板规划
 
-![](images/pve-template-plan.png)
+![](images/pve-template-plan.jpg)
 
 ## 模板维护
 
 ### 模板命名
 
-模板命名规则：`template-debian12-basic-v02`
+模板命名规则：`template-debian13-basic-v02`
 
 模板命名由四部分组成：
 
 1. 第一部分为固定前缀 template
-2. 第二部分为模板操作系统：如 debian12/13, windows10, windows11，openwrt
+2. 第二部分为模板操作系统：如 debian13, windows10, windows11，openwrt
    - debian13: debian 13 系列模板
-   - debian12: debian 12 系列模板
    - windows10: windows 10 系列模板
    - windows11: windows 11 系列模板
    - openwrt: openwrt 系列模板
@@ -41,8 +40,7 @@ description: >
 
     | 操作系统 | 模板编号 | 备注 |
     | -------- | -------- | -------- |
-    | debian12 | 00-09 | 预留10个 |
-    | debian13 | 10-19 | 预留10个 |
+    | debian13 | 00-19 | 预留20个 |
     | windows10 | 20-29 | 预留10个 |
     | windows11 | 30-39 | 预留10个 |
     | 备用 | 40-79 |  |
@@ -56,7 +54,7 @@ description: >
 
 1. 第一部分为模板范围前缀：
    - 99 为全局模板前缀，表示在整个 pve 集群内唯一
-   - 19/29/39/119/129 为本地模板前缀，它是为了在本地 pve 机器上加速使用模板而创建，表现为全局模板在本地 pve 机器的副本。同样用 pve 物理机器管理口的 IP 地址。
+   - 19/29/39/119/129 为本地模板前缀，它是为了在本地 pve 机器上加速使用模板而创建，表现为全局模板在本地 pve 机器的副本。通常用 pve 物理机器管理口的 IP 地址作为前缀。
 2. 第二部分为模板编号
 
 简单说，模板编号决定了模板的唯一性，为了加速使用在 VM ID 增加了范围前缀来表明是全局还是本地。
