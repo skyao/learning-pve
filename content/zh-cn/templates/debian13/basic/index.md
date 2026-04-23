@@ -23,7 +23,19 @@ https://skyao.net/learning-debian/docs/develop/templates/basic/
 
 ## 版本更新
 
-#### 模板说明-v01
+### 模板说明-v02
+
+| 模板编号 | 模板名称 |
+| -------- | -------- | 
+| 990002 | template-debian13-basic-v02 | 
+
+Basic pve template for debian 13.
+
+Upgraded to debian13.4 and keep kernel as 6.12.48-1 on 2026-04-22
+
+Build-time: 2026-04-22
+
+### 模板说明-v01
 
 | 模板编号 | 模板名称 |
 | -------- | -------- | 

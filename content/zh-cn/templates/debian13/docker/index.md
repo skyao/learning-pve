@@ -17,6 +17,24 @@ debian pve 的 docker 模板，基于 debian 13 basic 模板，包含 docker 运
 
 ## 版本更新
 
+### v02
+
+| 模板编号 | 模板名称 |
+| -------- | -------- | 
+| 990302 | template-debian13-docker-v02 | 
+
+#### 模板说明
+
+Docker pve template for debian 13.
+
+Udpate software version:
+
+- docker： v29.4.1-1
+- docker-compose： v5.1.3
+- cri-dockerd： 0.4.2
+
+Build-time: 2026-04-22
+
 ### v01
 
 | 模板编号 | 模板名称 |

@@ -23,6 +23,31 @@ https://skyao.net/learning-debian/docs/develop/templates/k8s/
 
 ## 版本更新
 
+### v02
+
+| 模板编号 | 模板名称 | 
+| -------- | -------- | 
+| 990402 | template-debian13-k8s-v02 | 
+
+#### 模板说明
+
+name: template-debian13-k8s-v02
+
+PVE template for K8s prewarm on debian 13.
+
+Update software version:
+
+- helm: v3.20.2
+- kubeadm / kubelet / kubectl: v1.35
+
+Update prewarm files for:
+
+- k8s: v1.35
+- kubernetes-dashboard: 已被废弃不再安装
+- metrics-server: v0.8.1
+
+Build-time: 2026-04-22
+
 ### v01
 
 | 模板编号 | 模板名称 | 
