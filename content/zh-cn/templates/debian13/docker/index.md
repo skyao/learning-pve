@@ -2,7 +2,7 @@
 title: "debian13 docker模板"
 linkTitle: "docker模板"
 weight: 40
-date: 2025-11-30
+date: 2026-08-18
 description: >
   debian13 pve docker模板
 ---
@@ -21,9 +21,19 @@ debian pve 的 docker 模板，基于 debian 13 basic 模板，包含 docker 运
 
 | 模板编号 | 模板名称 |
 | -------- | -------- | 
-| 990302 | template-debian13-docker-v02 | 
+| 990303 | template-debian13-docker-v03 | 
 
-#### 模板说明
+Docker pve template for debian 13.
+
+Apt Upgrade to debian13.6. 
+
+Build-time: 2026-08-18
+
+### v02
+
+| 模板编号 | 模板名称 |
+| -------- | -------- | 
+| 990302 | template-debian13-docker-v02 | 
 
 Docker pve template for debian 13.
 
@@ -40,8 +50,6 @@ Build-time: 2026-04-22
 | 模板编号 | 模板名称 |
 | -------- | -------- | 
 | 990301 | template-debian13-docker-v01 | 
-
-#### 模板说明
 
 Docker pve template for debian 13.
 
